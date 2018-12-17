@@ -8,7 +8,7 @@
 <div id="show_comments" class="past-comments">
 {% if comments %}
     {% for comment in comments %}
-    <div class="posted-comment">
+    <div class="posted-comment clearfix">
         <span class="comments-avatar">
             <img src="{{ comment.author_id__small_avatar_url }}"></img>
         </span>

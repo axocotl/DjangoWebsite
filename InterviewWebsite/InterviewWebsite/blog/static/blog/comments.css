@@ -2,6 +2,16 @@
     color: #F00;
 }
 
+.clearfix {
+  overflow: auto;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 .past-comments {
     width: 100%;
     border-top: 1px solid #555;
