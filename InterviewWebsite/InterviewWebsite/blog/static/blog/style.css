@@ -386,6 +386,7 @@ h4 {
 .related-tickers,
 .read-more-section{
     float: left;
+    width: 100%;
 }
 .block-title h2 {
     line-height: 1.25em;
