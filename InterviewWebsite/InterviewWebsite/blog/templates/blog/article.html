@@ -1,0 +1,64 @@
+{% extends "blog\base.html" %}
+{% load static %}
+{% block title %}{{ article.headline }}{% endblock %}
+{% block custom_stylesheets %}
+    {{ block.super }}
+    <script src="{% static 'blog/scripts/main.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/comments.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container top-bar article-top-bar">
+    <a href="{% url 'blog:home' %}" class="btn btn-primary">HOME</a>
+</div>
+<div class="container article-content-inner">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="article-header">
+                <header>
+                    <div id="adv_text" class="adv-heading"></div>
+                    <h1>{{ article.headline }}</h1>
+                    <h2>{{ article.promo }}</h2>
+                </header>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <main class="col-sm-7 col-md-8">
+            <div class="author-tagline author-inline">
+                <div class="author-and-date">
+                    <div class="author-byline">
+                        <div class="author-name">{{ article.byline }}</div>
+                        <div class="author-username">
+                            (<a href="#">{{ article.username }}</a>)
+                        </div>
+                    </div>
+                    <div class="article-pub-date">
+                        <div class="publication-date">
+                            {{ article.created|date:"F d, Y" }} at {{ article.created|date:"h:iA" }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="article-body">
+                <div class="article-content">
+                    {{ article.body|safe }}
+                </div>
+                <div class="article-disclosure">
+                    {{ article.disclosure|safe }}
+                </div>
+                <div class="special-message">
+                    {{ article.pitch|safe }}
+                </div>
+                <div class="comments">
+                    {% include "blog/comments.html" %}
+                </div>
+            </section>
+        </main>
+        <aside class="col-sm-5 col-md-4 p-l">
+            {% include "blog/tickers.html" %}
+            {% include "blog/readmore.html" %}
+        </aside>
+    </div>
+</div>
+{% endblock %}

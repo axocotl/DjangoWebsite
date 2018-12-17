@@ -1,0 +1,51 @@
+{% extends "blog\base.html" %}
+{% load static %}
+{% block title %}Interview Website{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container top-bar">
+        <a href="{% url 'blog:home' %}" class="btn btn-primary">HOME</a>
+    </div>
+    <div class="container content-inner">
+        <div class="main-col">
+            <section class="jumbo-card card">
+                <div class="card-image">
+                    <a href="{% url 'blog:article' first.uuid %}"><img src="{{ first.image }}" alt="" class="img-responsive"></a>
+                </div>
+                <div class="card-elements">
+                    <div class="card-header">
+                        <a href="{% url 'blog:article' first.uuid %}"><h3>{{ first.headline }}</h3></a>
+                        <p class="author">{{ first.byline }} | {{ first.created|date:"F d, Y" }}</p>
+                    </div>
+                    <div class="card-copy">
+                        <p>{{ first.promo }}</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="cards row">
+        {% for headline in rest %}
+            <div class="card">
+                <div class="card-image">
+                    <a href="{% url 'blog:article' headline.uuid %}">
+                        <img src="{{ headline.image }}" alt="">
+                    </a>
+                </div>
+                <div class="card-elements">
+                    <div class="card-header">
+                        <a href="{% url 'blog:article' headline.uuid %}">
+                            <h4>{{ headline.headline }}</h4>
+                        </a>
+                        <p class="author">{{ headline.byline }} | {{ headline.created|date:"F d, Y" }}</p>
+                    </div>
+                    <div class="card-copy">
+                        <p>{{ headline.promo }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<section class="related-tickers">
+    <div class="block-title">
+        <hr><h2>Stocks</h2>
+    </div>
+    <div id="ticker-list">
+    {% for inst in insts %}
+        <div class="ticker-row">
+            <div>
+                <span class="image-wrap">
+                    <a href="#">
+                        {{ inst.ticker }}
+                    </a>
+                </span>
+                <h3>{{ inst.name }}</h3>
+                <h4>
+                    <span class="ticker">
+                        <a title="{{ inst.name }} Stock Quote" href="#">
+                            {{ inst.exchange }}:<span class="symbol">{{ inst.ticker }}</span>
+                        </a>
+                    </span>
+                </h4>
+                <aside class="price-quote-container">
+                    <h4 class="current-price">
+                        ${{ inst.last }}
+                    </h4>
+                    <h4 class="price-change-amount {% if inst.change > 0 %} price-pos {% else %} price-neg {% endif %}">
+                        ${{ inst.change|floatformat:2 }}
+                    </h4>
+                    <h4 class="price-change-percent {% if inst.change_percent > 0 %} price-pos {% else %} price-neg {% endif %}">
+                        ({{ inst.change_percent|floatformat:2 }}%)
+                    </h4>
+                </aside>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <button onclick="shuffle('ticker-list')">Shuffle Stocks</button>
+</section>
